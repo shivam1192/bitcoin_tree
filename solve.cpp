@@ -47,12 +47,12 @@ int performDp(vector<Node> &store, ll weight){
     for(ll i=1;i<=store.size();i++){
         for(ll j=1;j<=weight;j++){
             if(store[i-1].weight <= weight){
-                if(store[i-1].fees + dp[i-1][j-store[i-1].weight]> dp[i-1][j]){
+                if((store[i-1].fees + dp[i-1][j-store[i-1].weight]> dp[i-1][j])){
                     store[i-1].check = true;
                     dp[i][j] = store[i-1].fees + dp[i-1][j-store[i-1].weight];
                   }
             }
-            else if(store[i-1].weight > weight || checkForAllParent(store[i-1].parentid,store)){
+            else if(store[i-1].weight > weight || !checkForAllParent(store[i-1].parentid,store)){
                 dp[i][j] = dp[i-1][j];
             }
         }
